@@ -14,10 +14,10 @@
   </property>
   <property>
     <name>dfs.datanode.handler.count</name>
-    <value>128</value>
+    <value>96</value>
   </property>
   <property>
     <name>dfs.namenode.handler.count</name>
-    <value>2560</value>
+    <value>192</value>
   </property>
 </configuration>

@@ -1,16 +1,11 @@
 #!/bin/bash
-# Copyright (c) 2010 Hitoshi Sato. All rights reserved.
+# Copyright (c) 2010 2011 Hitoshi Sato. All rights reserved.
 
 ## Configuration
 . $TSUDOOP_HOME/conf/tsudoop_settings.sh
 
-[ "X$TSUDOOP_FS" = "X" ] && TSUDOOP_FS="hdfs" ## default
-echo $TSUDOOP_FS
-
 #
 #
-
-[ "X$PBS_NODEFILE" != "X" ] && hosts=`cat $PBS_NODEFILE | tr '' '\n'`
 
 error() {
     echo "ERROR: $1 "
@@ -24,13 +19,16 @@ cleanup() {
 	[ "X$job_local_dir" != "X" ] && ssh $host rm -rf $job_local_dir
 	ssh $host rm -rf /scr/*
     done
+
+    [ "X$job_dir" != "X" ] && rm -rf $job_dir
 }
 
 start_tsudoop() {
     echo "creating tsudoop..."
 
-    ## Get jobid ## TODO : use PBS_JOBID 
-    # tsudoop_id=$USER-`date "+%Y-%m-%d-%H-%M-%S"`
+    [ "X$PBS_QUEUE" = "XV" -o  "$PBS_QUEUE" = "XG" ] && error "$PBS_QUEUE queue is not supported."
+
+    ## Get jobid
     tsudoop_id=$USER-$PBS_JOBID
 
     ## Configure environments
@@ -65,9 +63,9 @@ start_tsudoop() {
 
     ## Generate hadoop-env.sh
     hadoop_env=$HADOOP_CONF_DIR/hadoop-env.sh
-    hadoop_env_template=$HADOOP_HOME/conf/hadoop-env-t2.sh
+    hadoop_env_template=$TSUDOOP_HOME/share/hadoop-env-t2.sh
     [ ! -e $hadoop_env_template ] && \
-	error "Install hadoop-env-t2.sh to $hadoop_env_template."
+	error "hadoop-env-t2.sh not found in $TSUDOOP_HOME/share."
     cp -p $hadoop_env_template $HADOOP_CONF_DIR/hadoop-env.sh
 
     sed -i "s+%%JAVA_HOME%%+$JAVA_HOME+g" $hadoop_env
@@ -76,9 +74,9 @@ start_tsudoop() {
 
     ## Generate core-site.xml
     core_site=$HADOOP_CONF_DIR/core-site.xml
-    core_site_template=$HADOOP_HOME/conf/core-site-t2.xml
+    core_site_template=$TSUDOOP_HOME/share/core-site-t2.xml
     [ ! -e $core_site_template ] && \
-	error "Install core-site-t2.xml to $core_site_template ."
+	error "core-site-t2.xml not found in $TSUDOOP_HOME/share."
     cp -p $core_site_template $core_site
 
     hadoop_tmp_dir=$job_local_dir
@@ -86,37 +84,34 @@ start_tsudoop() {
     sed -i "s+%%HADOOP_TMP_DIR%%+$hadoop_tmp_dir+g" $core_site
     
     # fs_default.name="file:///"
-    if [ "X$TSUDOOP_FS" = "Xhdfs" ]; 
-    then
+    # [ "X$TSUDOOP_FS" = "X" ] && TSUDOOP_FS="lfs" ## default
+    if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	fs_default_name="hdfs://$masters:38001"	
     else
-	fs_default_name="file:///work0/t2g-compview/sato-h-ac"
+	fs_default_name="file:///"
     fi
     sed -i "s+%%FS_DEFAULT_NAME%%+$fs_default_name+g" $core_site
 
- ## Generate hdfs-site.xml
-    if [ "X$TSUDOOP_FS" = "Xhdfs" ]; 
-    then
-	echo "test"
+    ## Generate hdfs-site.xml
+    if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	hdfs_site=$HADOOP_CONF_DIR/hdfs-site.xml	
-	hdfs_site_template=$HADOOP_HOME/conf/hdfs-site-t2.xml
+	hdfs_site_template=$TSUDOOP_HOME/share/hdfs-site-t2.xml
 	[ ! -e $hdfs_site_template ] && \
-	    error "Install hdfs-site-t2.xml to $hdfs_site_template ."
+	    error "hdfs-site-t2.xml not found in $TSUDOOP_HOME/share."
 	cp -p $hdfs_site_template $hdfs_site
     fi
 
     ## Generate mapred-site.xml
     mapred_site=$HADOOP_CONF_DIR/mapred-site.xml
-    mapred_site_template=$HADOOP_HOME/conf/mapred-site-t2.xml
+    mapred_site_template=$TSUDOOP_HOME/share/mapred-site-t2.xml
     [ ! -e $mapred_site_template ] && \
-	error "Install mapred-site-t2.xml to $mapred_site_template ."
+	error "mapred-site-t2.xml not found in $TSUDOOP_HOME/share."
     cp -p $mapred_site_template $mapred_site
     
     jobtracker_address="$masters:49004"
     sed -i "s+%%JOBTRACKER_ADDRESS%%+$jobtracker_address+g" $mapred_site
 
-    if [ "X$TSUDOOP_FS" = "Xhdfs" ];
-    then
+    if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	jobtracker_system_dir="/hadoop/mapred/system"
 	jobtracker_staging_root_dir="/hadoop/mapred/staging"
     else
@@ -131,16 +126,26 @@ start_tsudoop() {
     echo $jobtracker_staging_root_dir
     sed -i "s+%%JOBTRACKER_STAGING_ROOT_DIR%%+$jobtracker_staging_root_dir+g" $mapred_site
 
-    case $PBS_O_QUEUE in
-	S96) map_tasks_maximum=8; reduce_tasks_maximum=3;;
-	*) map_tasks_maximum=8; reduce_tasks_maximum=3;;
-    esac
+    if [ "X$map_tasks_maximum" = "X" ]; then
+	case $PBS_O_QUEUE in
+	    S96 | S | X) map_tasks_maximum=8;;
+	    L512 | L256 | L128) map_tasks_maximum=24;;
+	    *) map_tasks_maximum=8;;
+	esac
+    fi
     sed -i "s+%%MAP_TASKS_MAXIMUM%%+$map_tasks_maximum+g" $mapred_site
+
+    if [ "X$reduce_tasks_maximum" = "X" ]; then
+	case $PBS_O_QUEUE in 
+	    S96 | S | X) reduce_tasks_maximum=3;;
+	    L512 | L256 | L128) reduce_tasks_maximum=8;;
+	    *) reduce_tasks_maximum=3;;
+	esac
+    fi
     sed -i "s+%%REDUCE_TASKS_MAXIMUM%%+$reduce_tasks_maximum+g" $mapred_site
 
     ## Start dfs
-    if [ "X$TSUDOOP_FS" = "Xhdfs" ] 
-    then
+    if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	hdfs namenode -format
 	start-dfs.sh
     fi
@@ -148,6 +153,7 @@ start_tsudoop() {
     ## Start mapred
     start-mapred.sh
 
+    ## FIXME
     sleep 60
 
     tsudoop_started=$job_dir/tsudoop_started
@@ -157,13 +163,11 @@ start_tsudoop() {
 stop_tsudoop() {
     echo "destroying tsudoop..."
     
-    if [ "X$tsudoop_started" != "X" ]
-    then
+    if [ "X$tsudoop_started" != "X" ]; then
 	stop-mapred.sh
 	wait
 
-	if [ "X$TSUDOOP_FS" = "Xhdfs" ]
-	then
+	if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	    stop-dfs.sh
 	    wait
 	fi
@@ -176,10 +180,13 @@ stop_tsudoop() {
 
 log() {
     cmd=$*
-    $cmd 2>&1 | tee -a $HADOOP_LOG_DIR/program.log
+    id=`echo $PBS_JOBID | sed -e 's/[.].*//'`
+    $cmd 2>&1 | tee -a $PBS_O_WORKDIR/$PBS_JOBNAME.t$id
 }
 
 trap stop_tsudoop EXIT INT TERM
+
+[ "X$PBS_NODEFILE" != "X" ] && hosts=`cat $PBS_NODEFILE | tr '' '\n'`
 
 cleanup
 

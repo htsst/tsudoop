@@ -64,11 +64,9 @@ script=$1
 case $q in 
     S) chunks=$n_nodes:ncpus=24:mem=52gb;;
     S96) chunks=$n_nodes:ncpus=24:mem=94gb;;
-    L128) chunks=$n_nodes:ncpus=64:mem=126gb;;
+    L512 | L256 | L128) chunks=$n_nodes:ncpus=64:mem=126gb;;
     *) error "$q queue is node supported.";;
 esac
 
-#cmd="t2sub $V -v TSUDOOP_HOME=$TSUDOOP_HOME $job_name -q $q -W group_list=$group -l select=$n_nodes:ncpus=24:mem=52gb -l place=scatter $script"
-#cmd="t2sub $V -v TSUDOOP_HOME=$TSUDOOP_HOME $job_name $mail_address -q $q -W group_list=$group -l select=$n_nodes:ncpus=24:mem=53gb -l place=scatter $script"
 cmd="t2sub $V -v TSUDOOP_HOME=$TSUDOOP_HOME,TSUDOOP_FS=$fs $job_name $mail_address -q $q -W group_list=$group -l select=$chunks -l place=scatter $script"
 $dry_run $cmd
