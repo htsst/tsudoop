@@ -1,0 +1,74 @@
+#!/bin/bash
+# Copyright (c) 2010 Hitoshi Sato. All rights reserved.
+
+n_nodes=1
+q="S"
+
+error() {
+    echo "ERROR : $1 "
+    usage
+}
+
+usage() {
+    echo "Usage: `basename $0` [options] script"
+    echo "       -d : runs as dry run mode. [disable]"
+    echo "       -f : specifies file systems (hdfs, lfs). [hdfs]"
+    echo "       -g <group name> : specifies tsubame group name. [none]"
+    echo "       -h : displays this message."
+    echo "       -m : specifies a mail address. [none]"
+    echo "       -n <num> : specifies the number of nodes. [1]"
+    echo "       -q <queue name> : specifies queue. [S]"
+    echo "       -N <job name> : specifies job name. [OTHERS]"
+    echo "       -V : copies users' login environment strings. [disable]"
+    exit 1    
+}
+
+
+wdir=`pwd`
+bin=`dirname $0`
+TSUDOOP_HOME=`cd "$bin/.."; pwd`
+
+while [ $# -gt 0 ];
+do
+    case $1 in
+	-d)
+	    dry_run=echo;;
+	-f)
+	    shift; fs=$1;;
+	-g)
+	    shift; group=$1;;
+	-h)
+	    usage;;
+	-m)
+	    shift; mail_address="-m abe -M $1";;
+	-n)
+	    shift; n_nodes=$1;;
+	-q)
+	    shift; q=$1;;
+	-N)
+	    shift; job_name="-N $1";;
+	-V)
+	    V="-V";;
+	-*)
+	    echo "Unknown option : $1"; usage;;
+	*)
+	    break;;
+    esac
+    shift
+done
+script=$1
+
+[ "X$group" = "X" ] && error "tsubame group not specified."
+[ "X$script" = "X" ] && error "script not specified."
+
+case $q in 
+    S) chunks=$n_nodes:ncpus=24:mem=52gb;;
+    S96) chunks=$n_nodes:ncpus=24:mem=94gb;;
+    L128) chunks=$n_nodes:ncpus=64:mem=126gb;;
+    *) error "$q queue is node supported.";;
+esac
+
+#cmd="t2sub $V -v TSUDOOP_HOME=$TSUDOOP_HOME $job_name -q $q -W group_list=$group -l select=$n_nodes:ncpus=24:mem=52gb -l place=scatter $script"
+#cmd="t2sub $V -v TSUDOOP_HOME=$TSUDOOP_HOME $job_name $mail_address -q $q -W group_list=$group -l select=$n_nodes:ncpus=24:mem=53gb -l place=scatter $script"
+cmd="t2sub $V -v TSUDOOP_HOME=$TSUDOOP_HOME,TSUDOOP_FS=$fs $job_name $mail_address -q $q -W group_list=$group -l select=$chunks -l place=scatter $script"
+$dry_run $cmd

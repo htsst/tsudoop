@@ -1,0 +1,43 @@
+#!/bin/bash
+# Copyright (c) 2011 Hitoshi Sato. All rights reserved.
+
+usage() {
+    echo "not implemented yet."
+    exit 1
+}
+
+wdir=`pwd`
+bin=`dirname "$0"`
+conf=`cd "$bin/../conf"; pwd`
+. $conf/tsudoop_settings.sh
+
+latest="$TSUDOOP_DIR/`ls -t $TSUDOOP_DIR | head -1`"
+
+## TODO if not found case
+
+#ls -al $latest/conf
+#less $latest/conf/mapred-site.xml
+tsudoop_id=`cat $latest/tsudoop_id`
+masters=`cat $latest/conf/masters`
+slaves=`cat $latest/conf/slaves`
+program_log=$latest/logs/program.log
+echo $latest
+
+echo $tsudoop_id
+echo $masters
+echo $slaves
+
+unset http_proxy
+unset https_proxy
+
+tsudoop_started=$latest/tsudoop_started
+[ ! -e $tsudoop_started ] && exit 1
+
+
+
+#wget http://$masters:50030/jobtracker.jsp -O jobtracker.html
+#wget http://$masters:50030/machines.jsp -O machines.html
+
+#firefox "http://$masters:50030" 
+
+echo $program_log

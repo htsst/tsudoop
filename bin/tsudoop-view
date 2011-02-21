@@ -1,0 +1,19 @@
+#!/bin/bash
+# Copyright (c) 2011 Hitoshi Sato. All rights reserved.
+
+usage() {
+    echo "test"
+    exit 1
+}
+
+wdir=`pwd`
+bin=`dirname "$0"`
+conf=`cd "$bin/../conf"; pwd`
+. $conf/tsudoop_settings.sh
+
+latest="$TSUDOOP_DIR/`ls -t $TSUDOOP_DIR | head -1`"
+echo $latest
+ls -al $latest
+echo $TSUDOOP_HOME
+
+

@@ -1,0 +1,249 @@
+2010-12-09 18:14:37,762 INFO org.apache.hadoop.mapred.TaskTracker: STARTUP_MSG: 
+/************************************************************
+STARTUP_MSG: Starting TaskTracker
+STARTUP_MSG:   host = t2a001005/10.1.1.5
+STARTUP_MSG:   args = []
+STARTUP_MSG:   version = 0.21.0
+STARTUP_MSG:   classpath = /home/usr0/sato-h-ac/.tsudoop/sato-h-ac-2010-12-09-18-14-34/conf:/home/usr0/sato-h-ac/tsudoop/apps/jdk1.6.0_22/lib/tools.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/..:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-common-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-common-test-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-hdfs-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-hdfs-0.21.0-sources.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-hdfs-ant-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-hdfs-test-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-hdfs-test-0.21.0-sources.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-0.21.0-sources.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-examples-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-test-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-tools-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ant-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/asm-3.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/aspectjrt-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/aspectjtools-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/avro-1.3.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-cli-1.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-codec-1.4.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-el-1.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-httpclient-3.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-lang-2.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-logging-1.1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-logging-api-1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-net-1.4.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/core-3.1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftplet-api-1.0.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftpserver-core-1.0.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftpserver-deprecated-1.0.0-M2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/hsqldb-1.8.0.10.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jackson-core-asl-1.4.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jackson-mapper-asl-1.4.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jasper-compiler-5.5.12.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jasper-runtime-5.5.12.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jdiff-1.0.9.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jets3t-0.7.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jetty-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jetty-util-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jsp-2.1-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jsp-api-2.1-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/junit-4.8.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/kfs-0.3.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/log4j-1.2.15.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/mina-core-2.0.0-M5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/mockito-all-1.8.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/oro-2.0.8.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-ant-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-generator-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/qdox-1.10.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/servlet-api-2.5-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/slf4j-api-1.5.11.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/slf4j-log4j12-1.5.11.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/xmlenc-0.52.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jsp-2.1/*.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hdfs/conf:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hdfs/hadoop-hdfs-*.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hdfs/lib/*.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/..:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../conf:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-0.21.0-sources.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-examples-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-test-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-tools-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ant-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/asm-3.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/aspectjrt-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/aspectjtools-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/avro-1.3.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-cli-1.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-codec-1.4.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-el-1.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-httpclient-3.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-lang-2.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-logging-1.1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-logging-api-1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-net-1.4.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/core-3.1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftplet-api-1.0.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftpserver-core-1.0.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftpserver-deprecated-1.0.0-M2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/hsqldb-1.8.0.10.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jackson-core-asl-1.4.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jackson-mapper-asl-1.4.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jasper-compiler-5.5.12.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jasper-runtime-5.5.12.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jdiff-1.0.9.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jets3t-0.7.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jetty-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jetty-util-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jsp-2.1-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jsp-api-2.1-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/junit-4.8.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/kfs-0.3.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/log4j-1.2.15.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/mina-core-2.0.0-M5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/mockito-all-1.8.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/oro-2.0.8.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-ant-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-generator-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/qdox-1.10.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/servlet-api-2.5-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/slf4j-api-1.5.11.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/slf4j-log4j12-1.5.11.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/xmlenc-0.52.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/..:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-0.21.0-sources.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-examples-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-test-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../hadoop-mapred-tools-0.21.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ant-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/asm-3.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/aspectjrt-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/aspectjtools-1.6.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/avro-1.3.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-cli-1.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-codec-1.4.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-el-1.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-httpclient-3.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-lang-2.5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-logging-1.1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-logging-api-1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/commons-net-1.4.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/core-3.1.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftplet-api-1.0.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftpserver-core-1.0.0.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/ftpserver-deprecated-1.0.0-M2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/hsqldb-1.8.0.10.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jackson-core-asl-1.4.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jackson-mapper-asl-1.4.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jasper-compiler-5.5.12.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jasper-runtime-5.5.12.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jdiff-1.0.9.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jets3t-0.7.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jetty-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jetty-util-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jsp-2.1-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/jsp-api-2.1-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/junit-4.8.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/kfs-0.3.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/log4j-1.2.15.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/mina-core-2.0.0-M5.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/mockito-all-1.8.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/oro-2.0.8.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-ant-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/paranamer-generator-2.2.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/qdox-1.10.1.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/servlet-api-2.5-6.1.14.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/slf4j-api-1.5.11.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/slf4j-log4j12-1.5.11.jar:/home/usr0/sato-h-ac/tsudoop/apps/hadoop-0.21.0/bin/../lib/xmlenc-0.52.jar
+STARTUP_MSG:   build = https://svn.apache.org/repos/asf/hadoop/common/branches/branch-0.21 -r 985326; compiled by 'tomwhite' on Tue Aug 17 01:02:28 EDT 2010
+************************************************************/
+2010-12-09 18:14:38,213 INFO org.mortbay.log: Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2010-12-09 18:14:38,256 INFO org.apache.hadoop.http.HttpServer: Added global filtersafety (class=org.apache.hadoop.http.HttpServer$QuotingInputFilter)
+2010-12-09 18:14:38,313 INFO org.apache.hadoop.security.Groups: Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping; cacheTimeout=300000
+2010-12-09 18:14:38,333 INFO org.apache.hadoop.http.HttpServer: Port returned by webServer.getConnectors()[0].getLocalPort() before open() is -1. Opening the listener on 50060
+2010-12-09 18:14:38,341 INFO org.apache.hadoop.http.HttpServer: listener.getLocalPort() returned 50060 webServer.getConnectors()[0].getLocalPort() returned 50060
+2010-12-09 18:14:38,341 INFO org.apache.hadoop.http.HttpServer: Jetty bound to port 50060
+2010-12-09 18:14:38,341 INFO org.mortbay.log: jetty-6.1.14
+2010-12-09 18:14:38,556 INFO org.mortbay.log: Started SelectChannelConnector@0.0.0.0:50060
+2010-12-09 18:14:38,587 INFO org.apache.hadoop.mapred.TaskTracker: Starting tasktracker with owner as sato-h-ac and supergroup as supergroup
+2010-12-09 18:14:38,593 INFO org.apache.hadoop.metrics.jvm.JvmMetrics: Initializing JVM Metrics with processName=TaskTracker, sessionId=
+2010-12-09 18:14:38,602 INFO org.apache.hadoop.ipc.Server: Starting SocketReader
+2010-12-09 18:14:38,606 INFO org.apache.hadoop.ipc.metrics.RpcMetrics: Initializing RPC Metrics with hostName=TaskTracker, port=48243
+2010-12-09 18:14:38,645 INFO org.apache.hadoop.ipc.metrics.RpcDetailedMetrics: Initializing RPC Metrics with hostName=TaskTracker, port=48243
+2010-12-09 18:14:38,646 INFO org.apache.hadoop.ipc.Server: IPC Server Responder: starting
+2010-12-09 18:14:38,646 INFO org.apache.hadoop.ipc.Server: IPC Server listener on 48243: starting
+2010-12-09 18:14:38,647 INFO org.apache.hadoop.ipc.Server: IPC Server handler 0 on 48243: starting
+2010-12-09 18:14:38,647 INFO org.apache.hadoop.ipc.Server: IPC Server handler 1 on 48243: starting
+2010-12-09 18:14:38,647 INFO org.apache.hadoop.ipc.Server: IPC Server handler 2 on 48243: starting
+2010-12-09 18:14:38,647 INFO org.apache.hadoop.ipc.Server: IPC Server handler 3 on 48243: starting
+2010-12-09 18:14:38,647 INFO org.apache.hadoop.mapred.TaskTracker: TaskTracker up at: localhost/127.0.0.1:48243
+2010-12-09 18:14:38,647 INFO org.apache.hadoop.mapred.TaskTracker: Starting tracker tracker_t2a001005:localhost/127.0.0.1:48243
+2010-12-09 18:15:15,134 INFO org.apache.hadoop.mapred.TaskTracker: Starting thread: Map-events fetcher for all reduce tasks on tracker_t2a001005:localhost/127.0.0.1:48243
+2010-12-09 18:15:15,161 INFO org.apache.hadoop.mapreduce.util.ProcessTree: setsid exited with exit code 0
+2010-12-09 18:15:15,177 INFO org.apache.hadoop.mapred.TaskTracker:  Using ResourceCalculatorPlugin : org.apache.hadoop.mapreduce.util.LinuxResourceCalculatorPlugin@9d686c1
+2010-12-09 18:15:15,179 WARN org.apache.hadoop.mapred.TaskTracker: TaskTracker's totalMemoryAllottedForTasks is -1 and reserved physical memory is not configured. TaskMemoryManager is disabled.
+2010-12-09 18:15:15,181 INFO org.apache.hadoop.mapred.IndexCache: IndexCache created with max memory = 10485760
+2010-12-09 18:15:18,304 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201012091814_0001_m_000003_0 task's state:UNASSIGNED
+2010-12-09 18:15:18,308 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201012091814_0001_m_000003_0 which needs 1 slots
+2010-12-09 18:15:18,308 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 2 and trying to launch attempt_201012091814_0001_m_000003_0 which needs 1 slots
+2010-12-09 18:15:18,309 INFO org.apache.hadoop.mapreduce.server.tasktracker.Localizer: Initializing user sato-h-ac on this TT.
+2010-12-09 18:15:18,314 WARN org.apache.hadoop.mapred.TaskTracker: Error initializing attempt_201012091814_0001_m_000003_0:
+java.io.FileNotFoundException: File file:/tmp/hadoop-sato-h-ac/mapred/system/job_201012091814_0001/jobToken does not exist.
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:423)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:294)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobTokenFile(TaskTracker.java:3984)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobFiles(TaskTracker.java:1036)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:977)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2247)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:18,316 ERROR org.apache.hadoop.mapred.TaskStatus: Trying to set finish time for task attempt_201012091814_0001_m_000003_0 when no start time is set, stackTrace is : java.lang.Exception
+	at org.apache.hadoop.mapred.TaskStatus.setFinishTime(TaskStatus.java:195)
+	at org.apache.hadoop.mapred.MapTaskStatus.setFinishTime(MapTaskStatus.java:51)
+	at org.apache.hadoop.mapred.TaskTracker$TaskInProgress.kill(TaskTracker.java:2937)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2255)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:18,316 INFO org.apache.hadoop.mapred.TaskTracker: addFreeSlot : current free slots : 2
+2010-12-09 18:15:21,322 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201012091814_0001_m_000003_1 task's state:UNASSIGNED
+2010-12-09 18:15:21,322 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201012091814_0001_m_000003_1 which needs 1 slots
+2010-12-09 18:15:21,322 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 2 and trying to launch attempt_201012091814_0001_m_000003_1 which needs 1 slots
+2010-12-09 18:15:21,323 INFO org.apache.hadoop.mapreduce.server.tasktracker.Localizer: User-directories for the user sato-h-ac are already initialized on this TT. Not doing anything.
+2010-12-09 18:15:21,329 WARN org.apache.hadoop.mapred.TaskTracker: Error initializing attempt_201012091814_0001_m_000003_1:
+java.io.FileNotFoundException: File file:/tmp/hadoop-sato-h-ac/mapred/system/job_201012091814_0001/jobToken does not exist.
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:423)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:294)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobTokenFile(TaskTracker.java:3984)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobFiles(TaskTracker.java:1036)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:977)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2247)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:21,329 ERROR org.apache.hadoop.mapred.TaskStatus: Trying to set finish time for task attempt_201012091814_0001_m_000003_1 when no start time is set, stackTrace is : java.lang.Exception
+	at org.apache.hadoop.mapred.TaskStatus.setFinishTime(TaskStatus.java:195)
+	at org.apache.hadoop.mapred.MapTaskStatus.setFinishTime(MapTaskStatus.java:51)
+	at org.apache.hadoop.mapred.TaskTracker$TaskInProgress.kill(TaskTracker.java:2937)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2255)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:21,329 INFO org.apache.hadoop.mapred.TaskTracker: addFreeSlot : current free slots : 2
+2010-12-09 18:15:24,334 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201012091814_0001_m_000003_2 task's state:UNASSIGNED
+2010-12-09 18:15:24,334 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201012091814_0001_m_000003_2 which needs 1 slots
+2010-12-09 18:15:24,334 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 2 and trying to launch attempt_201012091814_0001_m_000003_2 which needs 1 slots
+2010-12-09 18:15:24,334 INFO org.apache.hadoop.mapreduce.server.tasktracker.Localizer: User-directories for the user sato-h-ac are already initialized on this TT. Not doing anything.
+2010-12-09 18:15:24,338 WARN org.apache.hadoop.mapred.TaskTracker: Error initializing attempt_201012091814_0001_m_000003_2:
+java.io.FileNotFoundException: File file:/tmp/hadoop-sato-h-ac/mapred/system/job_201012091814_0001/jobToken does not exist.
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:423)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:294)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobTokenFile(TaskTracker.java:3984)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobFiles(TaskTracker.java:1036)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:977)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2247)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:24,338 ERROR org.apache.hadoop.mapred.TaskStatus: Trying to set finish time for task attempt_201012091814_0001_m_000003_2 when no start time is set, stackTrace is : java.lang.Exception
+	at org.apache.hadoop.mapred.TaskStatus.setFinishTime(TaskStatus.java:195)
+	at org.apache.hadoop.mapred.MapTaskStatus.setFinishTime(MapTaskStatus.java:51)
+	at org.apache.hadoop.mapred.TaskTracker$TaskInProgress.kill(TaskTracker.java:2937)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2255)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:24,338 INFO org.apache.hadoop.mapred.TaskTracker: addFreeSlot : current free slots : 2
+2010-12-09 18:15:27,346 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201012091814_0001_m_000003_3 task's state:UNASSIGNED
+2010-12-09 18:15:27,346 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201012091814_0001_m_000003_3 which needs 1 slots
+2010-12-09 18:15:27,346 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 2 and trying to launch attempt_201012091814_0001_m_000003_3 which needs 1 slots
+2010-12-09 18:15:27,346 INFO org.apache.hadoop.mapreduce.server.tasktracker.Localizer: User-directories for the user sato-h-ac are already initialized on this TT. Not doing anything.
+2010-12-09 18:15:27,349 WARN org.apache.hadoop.mapred.TaskTracker: Error initializing attempt_201012091814_0001_m_000003_3:
+java.io.FileNotFoundException: File file:/tmp/hadoop-sato-h-ac/mapred/system/job_201012091814_0001/jobToken does not exist.
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:423)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:294)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobTokenFile(TaskTracker.java:3984)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobFiles(TaskTracker.java:1036)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:977)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2247)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:27,349 ERROR org.apache.hadoop.mapred.TaskStatus: Trying to set finish time for task attempt_201012091814_0001_m_000003_3 when no start time is set, stackTrace is : java.lang.Exception
+	at org.apache.hadoop.mapred.TaskStatus.setFinishTime(TaskStatus.java:195)
+	at org.apache.hadoop.mapred.MapTaskStatus.setFinishTime(MapTaskStatus.java:51)
+	at org.apache.hadoop.mapred.TaskTracker$TaskInProgress.kill(TaskTracker.java:2937)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2255)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:27,349 INFO org.apache.hadoop.mapred.TaskTracker: addFreeSlot : current free slots : 2
+2010-12-09 18:15:30,361 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201012091814_0001_m_000002_0 task's state:UNASSIGNED
+2010-12-09 18:15:30,361 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201012091814_0001_m_000002_0 which needs 1 slots
+2010-12-09 18:15:30,361 INFO org.apache.hadoop.mapred.TaskTracker: Received KillTaskAction for task: attempt_201012091814_0001_m_000003_3
+2010-12-09 18:15:30,361 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 2 and trying to launch attempt_201012091814_0001_m_000002_0 which needs 1 slots
+2010-12-09 18:15:30,361 INFO org.apache.hadoop.mapreduce.server.tasktracker.Localizer: User-directories for the user sato-h-ac are already initialized on this TT. Not doing anything.
+2010-12-09 18:15:30,364 WARN org.apache.hadoop.mapred.TaskTracker: Error initializing attempt_201012091814_0001_m_000002_0:
+java.io.FileNotFoundException: File file:/tmp/hadoop-sato-h-ac/mapred/system/job_201012091814_0001/jobToken does not exist.
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:423)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:294)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobTokenFile(TaskTracker.java:3984)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobFiles(TaskTracker.java:1036)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:977)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2247)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:30,364 ERROR org.apache.hadoop.mapred.TaskStatus: Trying to set finish time for task attempt_201012091814_0001_m_000002_0 when no start time is set, stackTrace is : java.lang.Exception
+	at org.apache.hadoop.mapred.TaskStatus.setFinishTime(TaskStatus.java:195)
+	at org.apache.hadoop.mapred.MapTaskStatus.setFinishTime(MapTaskStatus.java:51)
+	at org.apache.hadoop.mapred.TaskTracker$TaskInProgress.kill(TaskTracker.java:2937)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2255)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:30,364 INFO org.apache.hadoop.mapred.TaskTracker: addFreeSlot : current free slots : 2
+2010-12-09 18:15:33,370 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201012091814_0001_m_000002_1 task's state:UNASSIGNED
+2010-12-09 18:15:33,371 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201012091814_0001_m_000002_1 which needs 1 slots
+2010-12-09 18:15:33,371 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 2 and trying to launch attempt_201012091814_0001_m_000002_1 which needs 1 slots
+2010-12-09 18:15:33,371 INFO org.apache.hadoop.mapreduce.server.tasktracker.Localizer: User-directories for the user sato-h-ac are already initialized on this TT. Not doing anything.
+2010-12-09 18:15:33,373 WARN org.apache.hadoop.mapred.TaskTracker: Error initializing attempt_201012091814_0001_m_000002_1:
+java.io.FileNotFoundException: File file:/tmp/hadoop-sato-h-ac/mapred/system/job_201012091814_0001/jobToken does not exist.
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:423)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:294)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobTokenFile(TaskTracker.java:3984)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobFiles(TaskTracker.java:1036)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:977)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2247)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:33,374 ERROR org.apache.hadoop.mapred.TaskStatus: Trying to set finish time for task attempt_201012091814_0001_m_000002_1 when no start time is set, stackTrace is : java.lang.Exception
+	at org.apache.hadoop.mapred.TaskStatus.setFinishTime(TaskStatus.java:195)
+	at org.apache.hadoop.mapred.MapTaskStatus.setFinishTime(MapTaskStatus.java:51)
+	at org.apache.hadoop.mapred.TaskTracker$TaskInProgress.kill(TaskTracker.java:2937)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2255)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:33,374 INFO org.apache.hadoop.mapred.TaskTracker: addFreeSlot : current free slots : 2
+2010-12-09 18:15:36,390 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201012091814_0001_r_000000_0 task's state:UNASSIGNED
+2010-12-09 18:15:36,390 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201012091814_0001_r_000000_0 which needs 1 slots
+2010-12-09 18:15:36,390 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 2 and trying to launch attempt_201012091814_0001_r_000000_0 which needs 1 slots
+2010-12-09 18:15:36,391 INFO org.apache.hadoop.mapreduce.server.tasktracker.Localizer: User-directories for the user sato-h-ac are already initialized on this TT. Not doing anything.
+2010-12-09 18:15:36,394 WARN org.apache.hadoop.mapred.TaskTracker: Error initializing attempt_201012091814_0001_r_000000_0:
+java.io.FileNotFoundException: File file:/tmp/hadoop-sato-h-ac/mapred/system/job_201012091814_0001/jobToken does not exist.
+	at org.apache.hadoop.fs.RawLocalFileSystem.getFileStatus(RawLocalFileSystem.java:423)
+	at org.apache.hadoop.fs.FilterFileSystem.getFileStatus(FilterFileSystem.java:294)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobTokenFile(TaskTracker.java:3984)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJobFiles(TaskTracker.java:1036)
+	at org.apache.hadoop.mapred.TaskTracker.localizeJob(TaskTracker.java:977)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2247)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:36,394 ERROR org.apache.hadoop.mapred.TaskStatus: Trying to set finish time for task attempt_201012091814_0001_r_000000_0 when no start time is set, stackTrace is : java.lang.Exception
+	at org.apache.hadoop.mapred.TaskStatus.setFinishTime(TaskStatus.java:195)
+	at org.apache.hadoop.mapred.ReduceTaskStatus.setFinishTime(ReduceTaskStatus.java:64)
+	at org.apache.hadoop.mapred.TaskTracker$TaskInProgress.kill(TaskTracker.java:2937)
+	at org.apache.hadoop.mapred.TaskTracker.startNewTask(TaskTracker.java:2255)
+	at org.apache.hadoop.mapred.TaskTracker$TaskLauncher.run(TaskTracker.java:2212)
+
+2010-12-09 18:15:36,395 INFO org.apache.hadoop.mapred.TaskTracker: addFreeSlot : current free slots : 2
+2010-12-09 18:15:54,510 ERROR org.apache.hadoop.mapred.TaskTracker: Caught exception: java.io.IOException: Call to t2a001002/10.1.1.2:9001 failed on local exception: java.io.IOException: Connection reset by peer
+	at org.apache.hadoop.ipc.Client.wrapException(Client.java:940)
+	at org.apache.hadoop.ipc.Client.call(Client.java:908)
+	at org.apache.hadoop.ipc.WritableRpcEngine$Invoker.invoke(WritableRpcEngine.java:198)
+	at org.apache.hadoop.mapred.$Proxy4.heartbeat(Unknown Source)
+	at org.apache.hadoop.mapred.TaskTracker.transmitHeartBeat(TaskTracker.java:1601)
+	at org.apache.hadoop.mapred.TaskTracker.offerService(TaskTracker.java:1432)
+	at org.apache.hadoop.mapred.TaskTracker.run(TaskTracker.java:2329)
+	at org.apache.hadoop.mapred.TaskTracker.main(TaskTracker.java:3461)
+Caused by: java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:21)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:237)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:210)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:236)
+	at org.apache.hadoop.net.SocketInputStream$Reader.performIO(SocketInputStream.java:59)
+	at org.apache.hadoop.net.SocketIOWithTimeout.doIO(SocketIOWithTimeout.java:142)
+	at org.apache.hadoop.net.SocketInputStream.read(SocketInputStream.java:159)
+	at org.apache.hadoop.net.SocketInputStream.read(SocketInputStream.java:132)
+	at java.io.FilterInputStream.read(FilterInputStream.java:116)
+	at org.apache.hadoop.ipc.Client$Connection$PingInputStream.read(Client.java:350)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:218)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:237)
+	at java.io.DataInputStream.readInt(DataInputStream.java:370)
+	at org.apache.hadoop.ipc.Client$Connection.receiveResponse(Client.java:664)
+	at org.apache.hadoop.ipc.Client$Connection.run(Client.java:602)
+
+2010-12-09 18:15:54,510 WARN org.apache.hadoop.mapred.TaskTracker: Ignoring exception that fetch for map completion events threw for job_201012091814_0001 threw: java.io.IOException: Call to t2a001002/10.1.1.2:9001 failed on local exception: java.io.IOException: Connection reset by peer
+	at org.apache.hadoop.ipc.Client.wrapException(Client.java:940)
+	at org.apache.hadoop.ipc.Client.call(Client.java:908)
+	at org.apache.hadoop.ipc.WritableRpcEngine$Invoker.invoke(WritableRpcEngine.java:198)
+	at org.apache.hadoop.mapred.$Proxy4.getTaskCompletionEvents(Unknown Source)
+	at org.apache.hadoop.mapred.TaskTracker.queryJobTracker(TaskTracker.java:1366)
+	at org.apache.hadoop.mapred.TaskTracker.access$600(TaskTracker.java:123)
+	at org.apache.hadoop.mapred.TaskTracker$FetchStatus.fetchMapCompletionEvents(TaskTracker.java:942)
+	at org.apache.hadoop.mapred.TaskTracker$MapEventsFetcherThread.run(TaskTracker.java:852)
+Caused by: java.io.IOException: Connection reset by peer
+	at sun.nio.ch.FileDispatcher.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:21)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:237)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:210)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:236)
+	at org.apache.hadoop.net.SocketInputStream$Reader.performIO(SocketInputStream.java:59)
+	at org.apache.hadoop.net.SocketIOWithTimeout.doIO(SocketIOWithTimeout.java:142)
+	at org.apache.hadoop.net.SocketInputStream.read(SocketInputStream.java:159)
+	at org.apache.hadoop.net.SocketInputStream.read(SocketInputStream.java:132)
+	at java.io.FilterInputStream.read(FilterInputStream.java:116)
+	at org.apache.hadoop.ipc.Client$Connection$PingInputStream.read(Client.java:350)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:218)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:237)
+	at java.io.DataInputStream.readInt(DataInputStream.java:370)
+	at org.apache.hadoop.ipc.Client$Connection.receiveResponse(Client.java:664)
+	at org.apache.hadoop.ipc.Client$Connection.run(Client.java:602)
+
+2010-12-09 18:15:54,511 INFO org.apache.hadoop.mapred.TaskTracker: Resending 'status' to 't2a001002' with reponseId '12
+2010-12-09 18:15:54,837 INFO org.apache.hadoop.mapred.TaskTracker: SHUTDOWN_MSG: 
+/************************************************************
+SHUTDOWN_MSG: Shutting down TaskTracker at t2a001005/10.1.1.5
+************************************************************/
