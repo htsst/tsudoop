@@ -1,0 +1,44 @@
+- Tsudoopのインストール場所
+Tsubame2.0の以下の場所にインストールされている．
+
+/work0/GSIC/apps/tsudoop
+
+- ジョブサブミッション用スクリプトの記述
+サンプルディレクトリをコピーし，移動する．
+$ cp -r /work0/t2g-compview/sato-h-ac/tsudoop-dev/sample .
+$ cd sample
+$ ls
+
+sample.shというスクリプトがあり，このスクリプトがPBS Proに投げるスクリプトの実態になります．
+
+$ less sample.sh
+
+ファイルの上部で下記のように別スクリプトをインクルードしています．
+このスクリプトでジョブの実行時の最初と最後でそれぞれhadoop環境の構築と破棄を行っています．
+# ここの部分はいじらなくてかまいません．
+
+. $TSUDOOP_HOME/conf/tsudoop.sh
+
+その後の行でユーザが行いたいhadoopの処理を記述するようになっています．
+以下は，hadoop付属のexamplesでpiを実行する例です．
+$hadoop_mapred_examplesにhadoop-mapred-examplesのjarファイルが指定されています．
+
+hadoop jar $hadoop_mapred_examples pi 48 100
+
+現在の推奨環境は，Lustreなので，ファイルのありかはそのまま/work0以下のパスを記述する必要があります．
+# TSUBAME2.0上のノードのSSD領域を束ねたHDFSも動作しますが，
+# TSUBAME2.0のファイルシステム(/home, /work0)とHDFSとの間で明示的にファイルのステージングを行う必要があり，
+# また，現在のところ，効率的なステージングを含めた動作の検証中です．
+
+- PBS Proへのジョブの投入
+
+このsample.shを以下のようにしてPBS Proへジョブ投入します．
+この例では，指定したグループにより，Sキューに対して，ノード数+1台(JobTrackerの分)だけ使って，Hadoop環境を構築し，その後，script.shを実行し，
+実行終了後はHadoop環境を破棄して終了します．
+
+/work0/GSIC/apps/tsudoop/bin/tsudoop-sub -g グループ名　-q キュー名(デフォルトはS)  -n (TaskTrackerの)ノード数 script.sh
+
+tsudoop-subはただのt2subへのラッパースクリプトです．実際の内容は，tsudoop-subに-dオプションをつけるとみれます．
+例えば，t2g-compviewグループ権限で, Sキュー4ノードで実行するときは，以下のように行います．
+
+/work0/GSIC/apps/bin/tsudoop-sub -g t2g-compview -q S -n 4 sample.sh
