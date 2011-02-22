@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2010 Hitoshi Sato. All rights reserved.
+# Copyright (c) 2010 2011 Hitoshi Sato. All rights reserved.
 
 n_nodes=1
 q="S"
@@ -64,7 +64,7 @@ script=$1
 case $q in 
     S) chunks=$n_nodes:ncpus=24:mem=52gb;;
     S96) chunks=$n_nodes:ncpus=24:mem=94gb;;
-    L512 | L256 | L128) chunks=$n_nodes:ncpus=64:mem=126gb;;
+    L512 | L256 | L128) chunks=$n_nodes:ncpus=64:mem=126gb;; # FIXHERE for FAT Medium nodes
     *) error "$q queue is node supported.";;
 esac
 
