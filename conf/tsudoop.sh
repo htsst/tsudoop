@@ -184,6 +184,11 @@ log() {
     $cmd 2>&1 | tee -a $PBS_O_WORKDIR/$PBS_JOBNAME.t$id
 }
 
+save_job_dir() {
+    echo $1
+    cp -r $job_dir $PBS_O_WORKDIR
+}
+
 trap stop_tsudoop EXIT INT TERM
 
 [ "X$PBS_NODEFILE" != "X" ] && hosts=`cat $PBS_NODEFILE | tr '' '\n'`

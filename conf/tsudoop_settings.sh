@@ -3,7 +3,8 @@
 ## Configuration
 
 #TSUDOOP_DIR=$HOME/.tsudoop
-TSUDOOP_DIR=/work0/t2g-compview/.tsudoop-$USER
+#TSUDOOP_DIR=/work0/t2g-compview/.tsudoop-$USER
+TSUDOOP_DIR=/gscr0/.tsudoop-$USER
 TSUDOOP_LOCAL_DIR=/scr/.tsudoop-$USER
 #TSUDOOP_DIR=/gscr0/.tsudoop-$USER
 
