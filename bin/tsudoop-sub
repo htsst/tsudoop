@@ -12,7 +12,7 @@ error() {
 usage() {
     echo "Usage: `basename $0` [options] script"
     echo "       -d : runs as dry run mode. [disable]"
-    echo "       -f : specifies file systems (hdfs, lfs). [hdfs]"
+    echo "       -f : specifies file systems (hdfs, lfs). [lfs]"
     echo "       -g <group name> : specifies tsubame group name. [none]"
     echo "       -h : displays this message."
     echo "       -m : specifies a mail address. [none]"

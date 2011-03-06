@@ -1,3 +1,4 @@
+
 #!/bin/bash
 # Copyright (c) 2010 2011 Hitoshi Sato. All rights reserved.
 
@@ -15,7 +16,7 @@ error() {
 cleanup() {
     for host in $hosts
     do
-	killall -9 java
+	for job in `jobs -p`; do kill -9 $job; done
 	[ "X$job_local_dir" != "X" ] && ssh $host rm -rf $job_local_dir
 	ssh $host rm -rf /scr/*
     done
@@ -63,9 +64,9 @@ start_tsudoop() {
 
     ## Generate hadoop-env.sh
     hadoop_env=$HADOOP_CONF_DIR/hadoop-env.sh
-    hadoop_env_template=$TSUDOOP_HOME/share/hadoop-env-t2.sh
+    hadoop_env_template=$TSUDOOP_HOME/share/hadoop-env-template.sh
     [ ! -e $hadoop_env_template ] && \
-	error "hadoop-env-t2.sh not found in $TSUDOOP_HOME/share."
+	error "hadoop-env-template.sh not found in $TSUDOOP_HOME/share."
     cp -p $hadoop_env_template $HADOOP_CONF_DIR/hadoop-env.sh
 
     sed -i "s+%%JAVA_HOME%%+$JAVA_HOME+g" $hadoop_env
@@ -74,9 +75,9 @@ start_tsudoop() {
 
     ## Generate core-site.xml
     core_site=$HADOOP_CONF_DIR/core-site.xml
-    core_site_template=$TSUDOOP_HOME/share/core-site-t2.xml
+    core_site_template=$TSUDOOP_HOME/share/core-site-template.xml
     [ ! -e $core_site_template ] && \
-	error "core-site-t2.xml not found in $TSUDOOP_HOME/share."
+	error "core-site-template.xml not found in $TSUDOOP_HOME/share."
     cp -p $core_site_template $core_site
 
     hadoop_tmp_dir=$job_local_dir
@@ -86,7 +87,8 @@ start_tsudoop() {
     # fs_default.name="file:///"
     # [ "X$TSUDOOP_FS" = "X" ] && TSUDOOP_FS="lfs" ## default
     if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
-	fs_default_name="hdfs://$masters:38001"	
+	hdfs_port=38001
+	fs_default_name="hdfs://$masters:$hdfs_port"	
     else
 	fs_default_name="file:///"
     fi
@@ -95,15 +97,15 @@ start_tsudoop() {
     ## Generate hdfs-site.xml
     if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	hdfs_site=$HADOOP_CONF_DIR/hdfs-site.xml	
-	hdfs_site_template=$TSUDOOP_HOME/share/hdfs-site-t2.xml
+	hdfs_site_template=$TSUDOOP_HOME/share/hdfs-site-template.xml
 	[ ! -e $hdfs_site_template ] && \
-	    error "hdfs-site-t2.xml not found in $TSUDOOP_HOME/share."
+	    error "hdfs-site-template.xml not found in $TSUDOOP_HOME/share."
 	cp -p $hdfs_site_template $hdfs_site
     fi
 
     ## Generate mapred-site.xml
     mapred_site=$HADOOP_CONF_DIR/mapred-site.xml
-    mapred_site_template=$TSUDOOP_HOME/share/mapred-site-t2.xml
+    mapred_site_template=$TSUDOOP_HOME/share/mapred-site-template.xml
     [ ! -e $mapred_site_template ] && \
 	error "mapred-site-t2.xml not found in $TSUDOOP_HOME/share."
     cp -p $mapred_site_template $mapred_site
@@ -148,6 +150,8 @@ start_tsudoop() {
     if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	hdfs namenode -format
 	start-dfs.sh
+    else # if lfs
+	cd $TMPDIR
     fi
 
     ## Start mapred
