@@ -1,66 +1,17 @@
-
 #!/bin/bash
 # Copyright (c) 2010 2011 Hitoshi Sato. All rights reserved.
 
 ## Configuration
-. $TSUDOOP_HOME/conf/tsudoop_settings.sh
+. $TSUDOOP_HOME/conf/tsudoop-settings.sh
+. $TSUDOOP_HOME/conf/tsudoop-common.sh
 
 #
 #
-
-error() {
-    echo "ERROR: $1 "
-    exit 1
-}
-
-cleanup() {
-    for host in $hosts
-    do
-	for job in `jobs -p`; do kill -9 $job; done
-	[ "X$job_local_dir" != "X" ] && ssh $host rm -rf $job_local_dir
-	ssh $host rm -rf /scr/*
-    done
-
-    [ "X$job_dir" != "X" ] && rm -rf $job_dir
-}
 
 start_tsudoop() {
     echo "creating tsudoop..."
 
-    [ "X$PBS_QUEUE" = "XV" -o  "$PBS_QUEUE" = "XG" ] && error "$PBS_QUEUE queue is not supported."
-
-    ## Get jobid
-    tsudoop_id=$USER-$PBS_JOBID
-
-    ## Configure environments
-    [ "X$TSUDOOP_DIR" = "X" ] && error "TSUDOOP_DIR is not set."
-    [ ! -e $TSUDOOP_DIR ] && mkdir -p $TSUDOOP_DIR
-
-    job_dir=$TSUDOOP_DIR/$tsudoop_id
-    [ ! -e $job_dir ] && mkdir -p $job_dir
-    echo $tsudoop_id > $job_dir/tsudoop_id
-
-    job_local_dir=$TSUDOOP_LOCAL_DIR/$tsudoop_id
-    [ ! -e $job_local_dir ] && mkdir -p $job_local_dir
-
-    export HADOOP_CONF_DIR=$job_dir/conf    
-    [ "X$HADOOP_HOME" = "X" ] && error "HADOOP_HOME is not set."
-    [ ! -e $HADOOP_CONF_DIR ] && cp -rp $HADOOP_HOME/conf $HADOOP_CONF_DIR
-
-    export HADOOP_LOG_DIR=$job_dir/logs
-    [ ! -e $HADOOP_LOG_DIR ] && mkdir -p $HADOOP_LOG_DIR
-
-    export HADOOP_PID_DIR=$job_local_dir/pids
-    [ ! -e $HADOOP_PID_DIR ] && mkdir -p $HADOOP_PID_DIR
-
-    ## Get masters and slaves from $PBS_NODEFILE
-    masters=`echo $hosts | awk '{ print $1 }'`
-    [ "X$masters" = "X" ] && error "no masters."
-    echo $masters > $HADOOP_CONF_DIR/masters
-
-    slaves=`echo $hosts | awk '{ $1=""; print }'`
-    [ "X$slaves" = "X" ] && error "no slaves."
-    echo $slaves > $HADOOP_CONF_DIR/slaves
+    configure_tsudoop_env
 
     ## Generate hadoop-env.sh
     hadoop_env=$HADOOP_CONF_DIR/hadoop-env.sh
@@ -160,8 +111,7 @@ start_tsudoop() {
     ## FIXME
     sleep 60
 
-    tsudoop_started=$job_dir/tsudoop_started
-    touch $tsudoop_started
+    confirm_started
 }
 
 stop_tsudoop() {
@@ -175,27 +125,15 @@ stop_tsudoop() {
 	    stop-dfs.sh
 	    wait
 	fi
+	
+	confirm_finished
+	[ "X$save_job_dir" != "X" ] && _save_job_dir
 
 	cleanup
-	
-	rm -rf $tsudoop_started
     fi
 }
 
-log() {
-    cmd=$*
-    id=`echo $PBS_JOBID | sed -e 's/[.].*//'`
-    $cmd 2>&1 | tee -a $PBS_O_WORKDIR/$PBS_JOBNAME.t$id
-}
-
-save_job_dir() {
-    echo $1
-    cp -r $job_dir $PBS_O_WORKDIR
-}
-
 trap stop_tsudoop EXIT INT TERM
-
-[ "X$PBS_NODEFILE" != "X" ] && hosts=`cat $PBS_NODEFILE | tr '' '\n'`
 
 cleanup
 

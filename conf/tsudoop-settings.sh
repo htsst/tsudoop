@@ -8,8 +8,8 @@ TSUDOOP_DIR=/gscr0/.tsudoop-$USER
 TSUDOOP_LOCAL_DIR=/scr/.tsudoop-$USER
 
 
-JAVA_HOME=$TSUDOOP_HOME/apps/jdk1.6.0_22
 HADOOP_HOME=$TSUDOOP_HOME/apps/hadoop-0.21.0
+JAVA_HOME=$TSUDOOP_HOME/apps/jdk1.6.0_22
 
 #
 #
