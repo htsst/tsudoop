@@ -74,14 +74,12 @@ start_tsudoop() {
 	jobtracker_staging_root_dir=$job_dir/mapred/staging
 	mkdir -p $jobtracker_staging_root_dir
     fi
-    echo $jobtracker_system_dir
     sed -i "s+%%JOBTRACKER_SYSTEM_DIR%%+$jobtracker_system_dir+g" $mapred_site
-    echo $jobtracker_staging_root_dir
     sed -i "s+%%JOBTRACKER_STAGING_ROOT_DIR%%+$jobtracker_staging_root_dir+g" $mapred_site
 
     if [ "X$map_tasks_maximum" = "X" ]; then
 	case $PBS_O_QUEUE in
-	    S96 | S | X) map_tasks_maximum=8;;
+	    S96 | S | X | R*) map_tasks_maximum=8;;
 	    L512 | L256 | L128) map_tasks_maximum=24;;
 	    *) map_tasks_maximum=8;;
 	esac
@@ -90,7 +88,7 @@ start_tsudoop() {
 
     if [ "X$reduce_tasks_maximum" = "X" ]; then
 	case $PBS_O_QUEUE in 
-	    S96 | S | X) reduce_tasks_maximum=3;;
+	    S96 | S | X | R*) reduce_tasks_maximum=3;;
 	    L512 | L256 | L128) reduce_tasks_maximum=8;;
 	    *) reduce_tasks_maximum=3;;
 	esac
@@ -108,8 +106,16 @@ start_tsudoop() {
     ## Start mapred
     start-mapred.sh
 
-    ## FIXME
-    sleep 60
+    sleep 30
+    if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
+	while : 
+	do
+	    sleep 5
+	    dfs_report=`hadoop dfsadmin -report`
+	    n_dnodes=`echo -e "$dfs_report" | grep available | awk '{ print $3 }'`
+	    [ $n_dnodes -gt 0 ] && break
+	done
+    fi
 
     confirm_started
 }

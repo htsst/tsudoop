@@ -30,7 +30,7 @@ configure_tsudoop_env() {
     [ "X$TSUDOOP_DIR" = "X" ] && error "TSUDOOP_DIR is not set."
     [ ! -e $TSUDOOP_DIR ] && mkdir -p $TSUDOOP_DIR
 
-        job_dir=$TSUDOOP_DIR/$tsudoop_id
+    job_dir=$TSUDOOP_DIR/$tsudoop_id
     [ ! -e $job_dir ] && mkdir -p $job_dir
     echo $tsudoop_id > $job_dir/tsudoop_id
 
@@ -73,17 +73,12 @@ confirm_started() {
 }
 
 confirm_finished() {
-    echo "confirm_finished $tsudoop_started"
     rm -rfv $tsudoop_started
 }
 
 #is_started() {
 #
 # }
-
-get_jobid_lists() {
-    echo `ls -t $history_dir | grep _conf.xml | sed -e 's/_conf.xml//g'`
-}
 
 get_html() {
     target_jsp=$1
@@ -96,13 +91,8 @@ get_html() {
 
 do_monitor() {
     jobid=$1
-
-    sleep 5
-
     dir=$html_dir/$jobid
     [ ! -e $dir ] && mkdir -p $dir
-
-    [ ! -e $history_dir/$jobid\_conf.xml ] && return
 
     jobdetails_file=$dir/jobdetails_$jobid.html
     taskgraph_map_file=$dir/taskgraph_map_$jobid.html
@@ -123,6 +113,7 @@ do_monitor() {
 }
 
 _monitoring() {
+
     unset http_proxy
     unset https_proxy
 
@@ -130,18 +121,27 @@ _monitoring() {
     mkdir -p $html_dir
 
     cp -p $HADOOP_HOME/webapps/static/hadoop.css $html_dir/hadoop.css
-    
-    sleep 5
+
     while :
     do
-	jobid_lists=`get_jobid_lists`
-	echo "jobid_lists $jobid_lists"
+	jobid_lists=`hadoop job -list all | awk '/job_/ { print $1 }'`
+	[ "X$jobid_lists" != "X" ] && break
+	sleep 2
+    done
+
+    get_html "jobtracker.jsp"  jobtracker.html
+
+    while :
+    do
+	jobid_lists=`hadoop job -list | awk '/job_/ { print $1 }'`
+	# echo "jobid_lists $jobid_lists"
 	[ "X$jobid_lists" = "X" ] && break
 
 	for jobid in $jobid_lists
 	do
-	    do_monitor $jobid # &
+	    do_monitor $jobid 
 	done
+	sleep 1
     done
 }
 
