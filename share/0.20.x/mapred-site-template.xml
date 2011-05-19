@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>mapred.job.tracker</name>
+    <value>%%JOBTRACKER_ADDRESS%%</value>
+  </property>
+  <property>
+    <name>mapred.output.compress</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>mapred.task.tracker.http.address</name>
+    <value>0.0.0.0:0</value>
+  </property>
+  <property>
+    <name>mapred.tasktracker.map.tasks.maximum</name>
+    <value>%%MAP_TASKS_MAXIMUM%%</value>
+  </property>
+  <property>
+    <name>mapred.tasktracker.reduce.tasks.maximum</name>
+    <value>%%REDUCE_TASKS_MAXIMUM%%</value>
+  </property>
+  <property>
+    <name>mapred.system.dir</name>
+    <value>%%JOBTRACKER_SYSTEM_DIR%%</value>
+  </property>
+  <property>
+    <name>mapreduce.jobtracker.staging.root.dir</name>
+    <value>%%JOBTRACKER_STAGING_ROOT_DIR%%</value>
+  </property>
+</configuration>

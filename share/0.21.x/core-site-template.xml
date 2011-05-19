@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>%%HADOOP_TMP_DIR%%</value>
+  </property>
+  <property>
+    <name>fs.default.name</name>
+    <value>%%FS_DEFAULT_NAME%%</value>
+  </property>
+  <property>
+    <name>io.file.buffer.size</name>
+    <value>16777216</value>
+  </property>
+</configuration>
