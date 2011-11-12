@@ -22,7 +22,7 @@ start_tsudoop() {
     sed -i "s+%%HADOOP_PID_DIR%%+$HADOOP_PID_DIR+g" $hadoop_env
 
     ## Generate core-site.xml
-    core_site_template=$TSUDOOP_HOME/share/core-site-template.xml
+    core_site_template=$TSUDOOP_HOME/share/0.21.x/core-site-template.xml
     core_site=$HADOOP_CONF_DIR/core-site.xml
     copy_template_file $core_site_template $core_site
 
@@ -34,22 +34,27 @@ start_tsudoop() {
     # [ "X$TSUDOOP_FS" = "X" ] && TSUDOOP_FS="lfs" ## default
     if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	hdfs_port=38001
-	fs_default_name="hdfs://$masters:$hdfs_port"	
+	fs_default_name="hdfs://$masters:$hdfs_port"
+    elif [ "X$TSUDOOP_FS" = "Xlfs" ]; then
+	fs_default_name="lfs:///"
+	#fs_work_dir="/work0/t2g-compview/sato-h-ac"
+	fs_work_dir="/work0/`id -gn`/$USER"
     else
 	fs_default_name="file:///"
     fi
     sed -i "s+%%FS_DEFAULT_NAME%%+$fs_default_name+g" $core_site
+    sed -i "s+%%FS_WORK_DIR%%+$fs_work_dir+g" $core_site
 
     ## Generate hdfs-site.xml
     if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
-	hdfs_site_template=$TSUDOOP_HOME/share/hdfs-site-template.xml
+	hdfs_site_template=$TSUDOOP_HOME/share/0.21.x/hdfs-site-template.xml
 	hdfs_site=$HADOOP_CONF_DIR/hdfs-site.xml	
 	copy_template_file $hdfs_site_template $hdfs_site
     fi
 
     ## Generate mapred-site.xml
+    mapred_site_template=$TSUDOOP_HOME/share/0.21.x/mapred-site-template.xml
     mapred_site=$HADOOP_CONF_DIR/mapred-site.xml
-    mapred_site_template=$TSUDOOP_HOME/share/mapred-site-template.xml
     [ ! -e $mapred_site_template ] && \
 	error "mapred-site-t2.xml not found in $TSUDOOP_HOME/share."
     cp -p $mapred_site_template $mapred_site
@@ -72,7 +77,7 @@ start_tsudoop() {
 
     if [ "X$map_tasks_maximum" = "X" ]; then
 	case $PBS_O_QUEUE in
-	    S96 | S | X | R*) map_tasks_maximum=8;;
+	    S96 | S | X | Y | R*) map_tasks_maximum=8;;
 	    L512 | L256 | L128) map_tasks_maximum=24;;
 	    *) map_tasks_maximum=8;;
 	esac
@@ -81,7 +86,7 @@ start_tsudoop() {
 
     if [ "X$reduce_tasks_maximum" = "X" ]; then
 	case $PBS_O_QUEUE in 
-	    S96 | S | X | R*) reduce_tasks_maximum=3;;
+	    S96 | S | X | Y | R*) reduce_tasks_maximum=3;;
 	    L512 | L256 | L128) reduce_tasks_maximum=8;;
 	    *) reduce_tasks_maximum=3;;
 	esac
@@ -92,8 +97,10 @@ start_tsudoop() {
     if [ "X$TSUDOOP_FS" = "Xhdfs" ]; then
 	hdfs namenode -format
 	start-dfs.sh
-    else # if lfs
-	cd $TMPDIR
+    else # if lfs | file
+#	cd $TMPDIR
+	cd $PBS_O_WORKDIR
+#	pwd
     fi
 
     ## Start mapred

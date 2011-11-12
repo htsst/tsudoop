@@ -16,4 +16,26 @@
     <name>io.file.buffer.size</name>
     <value>16777216</value>
   </property>
+
+  <!-- for Lustre file system -->
+  <property>
+    <name>fs.lfs.impl</name>
+    <value>org.apache.hadoop.fs.lfs.LustreFileSystem</value>
+  </property>
+  <property>
+    <name>fs.lfs.cmd.dir</name>
+    <value>/work0/GSIC/apps/tsudoop/bin</value>
+  </property>
+  <property>
+    <name>fs.lfs.workingDir</name>
+    <value>%%FS_WORK_DIR%%</value>
+  </property>
+  <property>
+    <name>fs.lfs.stripe.count</name>
+    <value>56</value>
+  </property>
+  <property> 
+    <name>fs.lfs.stripe.size</name>
+    <value>67108864</value>
+  </property>
 </configuration>

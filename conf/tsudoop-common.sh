@@ -2,7 +2,7 @@
 export TSUDOOP_DIR JAVA_HOME HADOOP_HOME 
 export PATH=$HADOOP_HOME/bin:$PATH
 
-[ "X$PBS_NODEFILE" != "X" ] && hosts=`cat $PBS_NODEFILE | tr '' '\n'`
+[ "X$PBS_NODEFILE" != "X" ] && hosts=`cat $PBS_NODEFILE` # | tr '' '\n'`
 
 error() {
     echo "ERROR: $1 "
@@ -17,12 +17,12 @@ cleanup() {
         ssh $host rm -rf /scr/*
     done
 
-    [ "X$job_dir" != "X" ] && rm -rf $job_dir
+    # [ "X$job_dir" != "X" ] && rm -rf $job_dir
 }
 
 configure_tsudoop_env() {
 
-    [ "X$PBS_QUEUE" = "XV" -o  "$PBS_QUEUE" = "XG" ] && error "$PBS_QUEUE queue is not supported."
+    [ "X$PBS_QUEUE" = "XV" -o  "X$PBS_QUEUE" = "XG" ] && error "$PBS_QUEUE queue is not supported."
 
     ## Get jobid
     tsudoop_id=$USER-$PBS_JOBID
@@ -49,13 +49,14 @@ configure_tsudoop_env() {
     [ ! -e $HADOOP_PID_DIR ] && mkdir -p $HADOOP_PID_DIR
 
     ## Get masters and slaves from $PBS_NODEFILE
-    masters=`echo $hosts | awk '{ print $1 }'`
+    masters=`echo -e $hosts | awk '{ print $1 }'`
     [ "X$masters" = "X" ] && error "no masters."
-    echo $masters > $HADOOP_CONF_DIR/masters
+    echo $masters | tr ' ' '\n' > $HADOOP_CONF_DIR/masters
 
-    slaves=`echo $hosts | awk '{ $1=""; print }'`
+    slaves=`echo -e $hosts | awk '{ $1=""; print }'`
     [ "X$slaves" = "X" ] && error "no slaves."
-    echo $slaves > $HADOOP_CONF_DIR/slaves
+    echo $slaves | tr ' ' '\n' > $HADOOP_CONF_DIR/slaves
+    num_tasktrackers=`wc $HADOOP_CONF_DIR/slaves | awk '{ print $1}'`
 }
 
 copy_template_file() {

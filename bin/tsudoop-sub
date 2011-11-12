@@ -12,7 +12,7 @@ error() {
 usage() {
     echo "Usage: `basename $0` [options] script"
     echo "       -d : runs as dry run mode. [disable]"
-    echo "       -f : specifies file systems (hdfs, lfs). [lfs]"
+    echo "       -f : specifies file systems (hdfs, lfs, file). [file]"
     echo "       -g <group name> : specifies tsubame group name. [none]"
     echo "       -h : displays this message."
     echo "       -m : specifies a mail address. [none]"
@@ -63,6 +63,7 @@ script=$1
 
 case $q in 
     S) chunks=$n_nodes:ncpus=24:mem=52gb;;
+    Y) chunks=$n_nodes:ncpus=24:mem=52gb;;
     R*) chunks=$n_nodes:ncpus=24:mem=52gb;;
     S96) chunks=$n_nodes:ncpus=24:mem=94gb;;
     L512 | L256 | L128) chunks=$n_nodes:ncpus=64:mem=126gb;; # FIXHERE for FAT Medium nodes

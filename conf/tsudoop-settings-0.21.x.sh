@@ -4,9 +4,9 @@
 
 #TSUDOOP_DIR=$HOME/.tsudoop
 #TSUDOOP_DIR=/work0/t2g-compview/.tsudoop-$USER
-TSUDOOP_DIR=/gscr0/.tsudoop-$USER
+#TSUDOOP_DIR=/gscr0/.tsudoop-$USER
+TSUDOOP_DIR=$PBS_O_WORKDIR
 TSUDOOP_LOCAL_DIR=/scr/.tsudoop-$USER
-
 
 HADOOP_HOME=$TSUDOOP_HOME/apps/hadoop-0.21.0
 JAVA_HOME=$TSUDOOP_HOME/apps/jdk1.6.0_22

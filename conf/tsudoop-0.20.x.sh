@@ -70,7 +70,7 @@ start_tsudoop() {
 
     if [ "X$map_tasks_maximum" = "X" ]; then
 	case $PBS_O_QUEUE in
-	    S96 | S | X | R*) map_tasks_maximum=8;;
+	    S96 | S | X | Y | R*) map_tasks_maximum=8;;
 	    L512 | L256 | L128) map_tasks_maximum=24;;
 	    *) map_tasks_maximum=8;;
 	esac
@@ -79,7 +79,7 @@ start_tsudoop() {
 
     if [ "X$reduce_tasks_maximum" = "X" ]; then
 	case $PBS_O_QUEUE in 
-	    S96 | S | X | R*) reduce_tasks_maximum=3;;
+	    S96 | S | X | Y | R*) reduce_tasks_maximum=3;;
 	    L512 | L256 | L128) reduce_tasks_maximum=8;;
 	    *) reduce_tasks_maximum=3;;
 	esac
