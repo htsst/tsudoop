@@ -1,3 +1,7 @@
+- Tsudoop
+
+TsudoopはTSUBAME2.0上でPBS Proスケジューラと協調してHadoop環境を構築し、ユーザのHadoopアプリケーションを実行するためのツールです。
+
 - Tsudoopのインストール場所
 Tsubame2.0の以下の場所にインストールされている．
 
@@ -9,7 +13,7 @@ $ cp -r /work0/t2g-compview/sato-h-ac/tsudoop-dev/sample .
 $ cd sample
 $ ls
 
-sample.shというスクリプトがあり，このスクリプトがPBS Proに投げるスクリプトの実態になります．
+sample.shというスクリプトがあり，このスクリプトがPBS Proに投げるスクリプトの実体になります．
 
 $ less sample.sh
 
